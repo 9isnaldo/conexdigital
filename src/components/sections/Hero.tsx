@@ -4,7 +4,7 @@ import { Shield, CheckCircle, Award } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero-section" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-conex-azul to-conex-primary opacity-95"></div>
       

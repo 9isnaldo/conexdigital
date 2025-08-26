@@ -8,9 +8,10 @@ export default function Home() {
     <>
       <Header />
       
-      <main >
+      <main>
         <div className="w-full">
             <Hero />
+            {/* Adicione o restante do seu conteúdo aqui */}
         </div>
       </main>
 
