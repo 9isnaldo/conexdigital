@@ -23,7 +23,7 @@ export default function Header() {
 
   const textColorClass = isOverHero ? 'text-white' : 'text-gray-800';
   const hoverColorClass = isOverHero ? 'hover:text-conex-azul-light' : 'hover:text-conex-azul';
-  const bgColorClass = isOverHero ? 'bg-transparent' : 'bg-white shadow-md';
+  const bgColorClass = 'bg-transparent';
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${bgColorClass}`}>
