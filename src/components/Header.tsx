@@ -31,7 +31,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center justify-center mt-6">
+            <div className="flex items-center justify-center mt-4">
               <img src={logo.src} alt="Conex Digital" className="h-10 md:h-12" />
             </div>
           </Link>
@@ -41,13 +41,13 @@ export default function Header() {
             <Link href="/" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Inicio
             </Link>
-            <Link href="/sobre" className={`transition-colors duration-300 ${hoverColorClass}`}>
+            <Link href="../parceria" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Seja Parceiro
             </Link>
             <Link href="/servicos" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Certificado Digital
             </Link>
-            <Link href="/contato" className={`transition-colors duration-300 ${hoverColorClass}`}>
+            <Link href="../contato" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Contato
             </Link>
             <Link href="/sobre" className={`transition-colors duration-300 ${hoverColorClass}`}>

@@ -5,6 +5,8 @@ import Hero from '@/components/sections/Hero';
 import Solucoes from '@/components/sections/Solucoes';
 import Empresa from '@/components/sections/Empresa';
 import Produtos from '@/components/sections/Produtos';
+import Processo from '@/components/sections/Processo';
+import FAQ from '@/components/sections/FAQ';
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
             <Solucoes />
             <Empresa />
             <Produtos />
+            <Processo />
+            <FAQ />
         </div>
       </main>
 
