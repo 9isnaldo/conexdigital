@@ -42,7 +42,6 @@ export default function ContactForm() {
   return (
     
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-                <Header />
       <div className="max-w-6xl mx-auto mt-28">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-blue-900 mb-4">Fale Conosco</h1>
@@ -57,31 +56,14 @@ export default function ContactForm() {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
                 <MessageCircle className="text-blue-700" size={24} />
-                WHATSAPP
+                FALE COM NOSSA EQUIPE
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-lg text-blue-800">Ituiutaba</h3>
+                  <h3 className="font-semibold text-lg text-blue-800">Whatsapp</h3>
                   <p className="flex items-center gap-1">
                     <Phone size={16} className="text-blue-600" />
-                    [34] 3269-3300
-                  </p>
-                  <p className="mt-2 font-semibold text-blue-800">Afonso Pena</p>
-                  <p className="flex items-center gap-1">
-                    <Phone size={16} className="text-blue-600" />
-                    [34] 3225-3301
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-blue-800">Sindcont</h3>
-                  <p className="flex items-center gap-1">
-                    <Phone size={16} className="text-blue-600" />
-                    [34] 3234-6902
-                  </p>
-                  <p className="mt-2 font-semibold text-blue-800">Matriz</p>
-                  <p className="flex items-center gap-1">
-                    <Phone size={16} className="text-blue-600" />
-                    [34] 3306-6006
+                    (34) 3269-3300
                   </p>
                 </div>
               </div>

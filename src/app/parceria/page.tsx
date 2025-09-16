@@ -42,7 +42,6 @@ const Parceria = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-            <Header />
       {/* Header com gradiente */}
       <header className="relative bg-gradient-to-br from-conex-azul to-conex-primary text-white overflow-hidden py-12 md:py-20 px-6">
         <div className="absolute inset-0 bg-gradient-to-r from-conex-azul/20 to-conex-primary/20"></div>

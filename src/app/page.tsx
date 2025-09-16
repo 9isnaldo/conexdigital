@@ -10,9 +10,7 @@ import FAQ from '@/components/sections/FAQ';
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      
+    <>     
       <main>
         <div className="w-full">
             <Hero />
