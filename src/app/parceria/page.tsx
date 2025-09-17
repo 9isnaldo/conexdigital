@@ -174,14 +174,6 @@ const Parceria = () => {
                   <p>Nossa equipe monitora constantemente todos os sistemas, garantindo rápida resposta a qualquer eventualidade e máxima disponibilidade.</p>
                 </div>
               </div>
-              
-              <div className="flex flex-wrap gap-4">
-                {["Sistema Principal", "Sistema Backup", "Monitoramento 24/7"].map((item, index) => (
-                  <span key={index} className="px-4 py-2 bg-conex-primary/20 text-conex-azul-light rounded-full text-sm font-medium border border-conex-primary/30">
-                    {item}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
