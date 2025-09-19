@@ -45,8 +45,6 @@ const Parceria = () => {
       {/* Header com gradiente */}
       <header className="relative bg-gradient-to-br from-conex-azul to-conex-primary text-white overflow-hidden py-12 md:py-20 px-6">
         <div className="absolute inset-0 bg-gradient-to-r from-conex-azul/20 to-conex-primary/20"></div>
-        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-32 h-32 rounded-full bg-conex-azul-light/10"></div>
-        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-40 h-40 rounded-full bg-conex-primary/10"></div>
         
         <div className="container mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">

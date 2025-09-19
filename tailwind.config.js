@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         'conex': {
-          azul: '#1b2c33',
+          azul: '#0b2643',
           primary: '#325595',
           'azul-light': '#00c6e8',
           white: '#f9fafb'
