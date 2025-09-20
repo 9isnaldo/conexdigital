@@ -1,12 +1,14 @@
 'use client';
 
 import { Shield, CheckCircle, Award } from "lucide-react";
+import HexagonBackground from "../ux/hexagon-background";
 
 const Hero = () => {
   return (
     <section id="hero-section" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-conex-azul to-conex-primary"></div>
+      <div className="absolute inset-0 bg-conex-azul"></div>
+      <HexagonBackground  />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-20 text-center text-white">
