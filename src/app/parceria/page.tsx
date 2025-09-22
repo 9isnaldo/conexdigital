@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Shield, CheckCircle, Award, FileText, Zap, Download, ChevronRight, Star, Users, TrendingUp, Clock, Phone, Mail, Globe, MessageCircle } from 'lucide-react';
+import { Shield, TrendingUp, Phone, Mail, Globe, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header';
+import HexagonBackground from '@/components/ux/hexagon-background';
 
 const Parceria = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +44,8 @@ const Parceria = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Header com gradiente */}
-      <header className="relative bg-gradient-to-br from-conex-azul to-conex-primary text-white overflow-hidden py-12 md:py-20 px-6">
+      <header className="relative bg-conex-azul text-white overflow-hidden py-12 md:py-20 px-6">
+        <HexagonBackground />
         <div className="absolute inset-0 bg-gradient-to-r from-conex-azul/20 to-conex-primary/20"></div>
         
         <div className="container mx-auto relative z-10">

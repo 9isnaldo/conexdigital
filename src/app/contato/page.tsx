@@ -39,7 +39,7 @@ const Contato = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 font-sans">
+    <div className="min-h-screen bg-white font-sans">
       {/* Header com gradiente igual à página de exemplo */}
       <header className="relative py-20 md:py-24 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-conex-azul to-conex-primary"></div>
@@ -220,13 +220,13 @@ const Contato = () => {
                 </h2>
                 <p className="text-conex-azul/90 mb-6">Acompanhe nossas redes sociais para ficar por dentro de todas as novidades.</p>
                 <div className="flex gap-4">
-                  <button className="px-5 py-3 rounded-lg text-white font-medium bg-blue-600 hover:bg-blue-700 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1">
+                  <button className="px-5 py-3 rounded-full text-white font-medium bg-blue-600 hover:bg-blue-700 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1">
                     <span>Facebook</span>
                   </button>
-                  <button className="px-5 py-3 rounded-lg text-white font-medium bg-pink-600 hover:bg-pink-700 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1" style={{animationDelay: '0.2s'}}>
+                  <button className="px-5 py-3 rounded-full text-white font-medium bg-pink-600 hover:bg-pink-700 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1" style={{animationDelay: '0.2s'}}>
                     <span>Instagram</span>
                   </button>
-                  <button className="px-5 py-3 rounded-lg text-white font-medium bg-blue-800 hover:bg-blue-900 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1" style={{animationDelay: '0.4s'}}>
+                  <button className="px-5 py-3 rounded-full text-white font-medium bg-blue-800 hover:bg-blue-900 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-1" style={{animationDelay: '0.4s'}}>
                     <span>LinkedIn</span>
                   </button>
                 </div>

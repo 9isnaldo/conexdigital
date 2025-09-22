@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
@@ -17,33 +16,63 @@ const useMousePosition = () => {
   return mousePosition;
 };
 
-const HexagonBackground = () => {
-  const mousePosition = useMousePosition();
-  const [grid, setGrid] = useState<{ cols: number; rows: number; hexes: { key: string; cx: number; cy: number }[] }>({ cols: 0, rows: 0, hexes: [] });
+interface HexagonBackgroundProps {
+  size?: number;
+  spacing?: number;
+  className?: string;
+}
 
-  const size = 180; // Hexágonos ainda maiores
-  const spacing = 100; // Espaçamento proporcional maior
+const HexagonBackground = ({ 
+  size = 180, 
+  spacing = 10,
+  className = "" 
+}: HexagonBackgroundProps) => {
+  const mousePosition = useMousePosition();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [grid, setGrid] = useState<{ 
+    cols: number; 
+    rows: number; 
+    hexes: { key: string; cx: number; cy: number }[];
+    containerRect: DOMRect | null;
+  }>({ 
+    cols: 0, 
+    rows: 0, 
+    hexes: [], 
+    containerRect: null 
+  });
 
   useEffect(() => {
-    const hexWidth = Math.sqrt(3) * size + spacing;
-    const hexHeight = 2 * size + spacing;
+    const updateGrid = () => {
+      if (!containerRef.current) return;
 
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const hexWidth = Math.sqrt(3) * size + spacing;
+      const hexHeight = 2 * size + spacing;
 
-    const cols = Math.ceil(screenWidth / hexWidth) + 1;
-    const rows = Math.ceil(screenHeight / (hexHeight * 0.75)) + 1;
+      // Usa as dimensões do container, não da janela
+      const containerWidth = containerRect.width;
+      const containerHeight = containerRect.height;
 
-    const hexes = [];
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
-        const cx = col * hexWidth + xOffset - hexWidth / 2;
-        const cy = row * hexHeight * 0.75 - hexHeight / 2;
-        hexes.push({ key: `${row}-${col}`, cx, cy });
+      const cols = Math.ceil(containerWidth / hexWidth) + 2; // +2 para garantir cobertura
+      const rows = Math.ceil(containerHeight / (hexHeight * 0.75)) + 2;
+
+      const hexes = [];
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+          const cx = col * hexWidth + xOffset;
+          const cy = row * hexHeight * 0.75;
+          hexes.push({ key: `${row}-${col}`, cx, cy });
+        }
       }
-    }
-    setGrid({ cols, rows, hexes });
+      setGrid({ cols, rows, hexes, containerRect });
+    };
+
+    updateGrid();
+
+    // Recalcula quando a janela é redimensionada
+    window.addEventListener('resize', updateGrid);
+    return () => window.removeEventListener('resize', updateGrid);
   }, [size, spacing]);
 
   const getHexagonPath = (cx: number, cy: number, s: number) => {
@@ -51,16 +80,25 @@ const HexagonBackground = () => {
     return `M ${cx} ${cy - s} L ${cx + h} ${cy - s / 2} L ${cx + h} ${cy + s / 2} L ${cx} ${cy + s} L ${cx - h} ${cy + s / 2} L ${cx - h} ${cy - s / 2} Z`;
   };
 
-  // Função para verificar se o mouse está dentro do hexágono
-  const isMouseInsideHexagon = (cx: number, cy: number, mouseX: number, mouseY: number) => {
-    const dx = mouseX - cx;
-    const dy = mouseY - cy;
+  // Função para verificar se o mouse está dentro do hexágono (relativo ao container)
+  const isMouseInsideHexagon = (cx: number, cy: number, containerRect: DOMRect | null) => {
+    if (!containerRect) return false;
+    
+    // Ajusta as coordenadas do mouse para serem relativas ao container
+    const relativeMouseX = mousePosition.x - containerRect.left;
+    const relativeMouseY = mousePosition.y - containerRect.top;
+
+    const dx = relativeMouseX - cx;
+    const dy = relativeMouseY - cy;
     const distance = Math.sqrt(dx * dx + dy * dy);
     return distance <= size;
   };
 
   return (
-    <div className="fixed inset-0 z-0 bg-background overflow-hidden">
+    <div 
+      ref={containerRef}
+      className={`absolute inset-0 z-0 overflow-hidden ${className}`}
+    >
       <svg className="absolute w-full h-full">
         <defs>
           <linearGradient id="led-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -80,7 +118,7 @@ const HexagonBackground = () => {
         </defs>
         <g>
           {grid.hexes.map(({ key, cx, cy }) => {
-            const isHovered = isMouseInsideHexagon(cx, cy, mousePosition.x, mousePosition.y);
+            const isHovered = isMouseInsideHexagon(cx, cy, grid.containerRect);
 
             return (
               <g key={key}>
