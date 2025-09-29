@@ -63,7 +63,7 @@ const WhatsappButton = () => {
               </div>
               <div>
                 <h4 className="font-semibold text-[#020817] text-sm mb-1">
-                  Fale com nossa IA agora!
+                  Fale agora com mosso comercial!
                 </h4>
                 <p className="text-[#64748b] text-xs leading-relaxed">
                   Resolva sua demanda em minutos. Nossa equipe está online e pronta para ajudar.

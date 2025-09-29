@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Phone, MessageCircle, MapPin, Mail, Send } from 'lucide-react'
+import HexagonBackground from '@/components/ux/hexagon-background'
 
 const Contato = () => {
   const [formData, setFormData] = useState({
@@ -41,9 +42,9 @@ const Contato = () => {
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Header com gradiente igual à página de exemplo */}
-      <header className="relative py-20 md:py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-conex-azul to-conex-primary"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-conex-azul/20 to-conex-primary/20"></div>        
+      <header className="relative bg-conex-azul py-20 md:py-24 px-6 overflow-hidden">
+                <HexagonBackground />
+        <div className="absolute inset-0"></div>        
         <div className="container mx-auto relative z-10">          
           <div className="text-center mt-8 animate-fade-in-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">

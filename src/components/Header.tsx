@@ -11,59 +11,74 @@ export default function Header() {
   const headerRef = useRef(null);
 
   useEffect(() => {
-    const checkBackgroundColor = () => {
+    const checkHeaderBackground = () => {
       if (!headerRef.current) return;
       
-      // Obtém a posição do header
       const headerRect = headerRef.current.getBoundingClientRect();
       const headerBottom = headerRect.bottom;
       
-      // Encontra o elemento abaixo do header
-      const elementsBelow = document.elementsFromPoint(
-        window.innerWidth / 2,
-        headerBottom + 5
-      );
+      // Ponto de verificação logo abaixo do header
+      const checkPointY = headerBottom + 5;
+      const checkPointX = window.innerWidth / 2;
       
-      // Procura por um elemento com fundo azul (conex-azul ou conex-primary)
-      const blueBackgroundElement = elementsBelow.find(el => {
-        const styles = window.getComputedStyle(el);
-        const backgroundColor = styles.backgroundColor;
-        
-        // Verifica se a cor de fundo é azul (valores RGB das cores CONEX)
-        const isConexAzul = backgroundColor === 'rgb(27, 44, 51)'; // #1b2c33
-        const isConexPrimary = backgroundColor === 'rgb(50, 85, 149)'; // #325595
-        
-        // Verifica também gradientes que contenham essas cores
-        const hasConexAzulGradient = 
-          styles.backgroundImage.includes('#1b2c33') || 
-          styles.backgroundImage.includes('rgb(27, 44, 51)') ||
-          styles.backgroundImage.includes('conex-azul');
-        
-        const hasConexPrimaryGradient = 
-          styles.backgroundImage.includes('#325595') || 
-          styles.backgroundImage.includes('rgb(50, 85, 149)') ||
-          styles.backgroundImage.includes('conex-primary');
-        
-        return isConexAzul || isConexPrimary || hasConexAzulGradient || hasConexPrimaryGradient;
-      });
+      // Encontra o elemento no ponto de verificação
+      const elementBelow = document.elementFromPoint(checkPointX, checkPointY);
       
-      if (blueBackgroundElement) {
+      if (!elementBelow) {
+        setTextColorClass('text-conex-azul');
+        setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO: hover azul-light em fundo branco
+        return;
+      }
+
+      // Verifica se é uma seção com HexagonBackground
+      const sectionElement = elementBelow.closest('section') || elementBelow.closest('header');
+      
+      if (!sectionElement) {
+        setTextColorClass('text-conex-azul');
+        setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO: hover azul-light em fundo branco
+        return;
+      }
+
+      // Verifica se a seção tem HexagonBackground ou fundo azul
+      const hasHexagonBackground = sectionElement.querySelector('.absolute.inset-0.z-0') !== null;
+      const sectionStyles = window.getComputedStyle(sectionElement);
+      const sectionBackgroundColor = sectionStyles.backgroundColor;
+      
+      // Cores azuis da CONEX
+      const conexAzulRGB = 'rgb(27, 44, 51)';
+      const conexPrimaryRGB = 'rgb(50, 85, 149)';
+      
+      // Verifica se tem fundo azul sólido
+      const hasSolidBlueBackground = 
+        sectionBackgroundColor === conexAzulRGB || 
+        sectionBackgroundColor === conexPrimaryRGB;
+      
+      // Verifica classes de background azul
+      const hasBlueBackgroundClass = 
+        sectionElement.classList.contains('bg-conex-azul') ||
+        sectionElement.classList.contains('bg-conex-primary') ||
+        sectionElement.classList.contains('bg-gradient-to-br') ||
+        sectionElement.classList.contains('bg-gradient-to-r');
+
+      // Se tem HexagonBackground OU fundo azul, usa texto branco
+      if (hasHexagonBackground || hasSolidBlueBackground || hasBlueBackgroundClass) {
         setTextColorClass('text-conex-white');
         setHoverColorClass('hover:text-conex-azul-light');
       } else {
         setTextColorClass('text-conex-azul');
-        setHoverColorClass('hover:text-conex-azul-light');
+        setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO: sempre azul-light no hover
       }
     };
 
-    const handleScroll = () => {
-      checkBackgroundColor();
+    // Debounce para performance
+    let timeoutId:any;
+    const debouncedCheck = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkHeaderBackground, 30);
     };
 
-    // Verificação instantânea usando MutationObserver para detectar mudanças no DOM
-    const observer = new MutationObserver(checkBackgroundColor);
-    
-    // Observa mudanças em todo o documento
+    // Observador de mutação para detectar mudanças no DOM
+    const observer = new MutationObserver(debouncedCheck);
     observer.observe(document.body, { 
       childList: true, 
       subtree: true,
@@ -71,77 +86,100 @@ export default function Header() {
       attributeFilter: ['class', 'style'] 
     });
 
-    // Verifica a cor imediatamente
-    checkBackgroundColor();
+    // Event listeners
+    window.addEventListener('scroll', debouncedCheck, { passive: true });
+    window.addEventListener('resize', debouncedCheck, { passive: true });
+    
+    // Verificação inicial com delay para garantir que o DOM está carregado
+    const initialCheck = setTimeout(checkHeaderBackground, 100);
+    
+    // Verificação quando a rota muda (Next.js)
+    const handleRouteChange = () => {
+      setTimeout(checkHeaderBackground, 200);
+    };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('popstate', handleRouteChange);
     
     return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(initialCheck);
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', debouncedCheck);
+      window.removeEventListener('resize', debouncedCheck);
+      window.removeEventListener('popstate', handleRouteChange);
     };
   }, []);
 
-  // Efeito adicional para verificar a cor quando o caminho da URL muda
+  // Efeito adicional para verificar quando o menu mobile é fechado
   useEffect(() => {
-    // Pequeno timeout para garantir que o DOM foi atualizado após a navegação
-    const timer = setTimeout(() => {
-      if (headerRef.current) {
-        const checkBackgroundColor = () => {
-          const headerRect = headerRef.current.getBoundingClientRect();
-          const headerBottom = headerRect.bottom;
-          
-          const elementsBelow = document.elementsFromPoint(
-            window.innerWidth / 2,
-            headerBottom + 5
-          );
-          
-          const blueBackgroundElement = elementsBelow.find(el => {
-            const styles = window.getComputedStyle(el);
-            const backgroundColor = styles.backgroundColor;
+    if (!isOpen) {
+      // Pequeno delay para garantir que a transição terminou
+      setTimeout(() => {
+        if (headerRef.current) {
+          const checkHeaderBackground = () => {
+            const headerRect = headerRef.current.getBoundingClientRect();
+            const checkPointY = headerRect.bottom + 5;
+            const checkPointX = window.innerWidth / 2;
             
-            const isConexAzul = backgroundColor === 'rgb(27, 44, 51)';
-            const isConexPrimary = backgroundColor === 'rgb(50, 85, 149)';
+            const elementBelow = document.elementFromPoint(checkPointX, checkPointY);
             
-            const hasConexAzulGradient = 
-              styles.backgroundImage.includes('#1b2c33') || 
-              styles.backgroundImage.includes('rgb(27, 44, 51)') ||
-              styles.backgroundImage.includes('conex-azul');
-            
-            const hasConexPrimaryGradient = 
-              styles.backgroundImage.includes('#325595') || 
-              styles.backgroundImage.includes('rgb(50, 85, 149)') ||
-              styles.backgroundImage.includes('conex-primary');
-            
-            return isConexAzul || isConexPrimary || hasConexAzulGradient || hasConexPrimaryGradient;
-          });
-          
-          if (blueBackgroundElement) {
-            setTextColorClass('text-conex-white');
-            setHoverColorClass('hover:text-conex-azul-light');
-          } else {
-            setTextColorClass('text-conex-azul');
-            setHoverColorClass('hover:text-conex-azul-light');
-          }
-        };
-        
-        checkBackgroundColor();
-      }
-    }, 50);
-    
-    return () => clearTimeout(timer);
-  }, [typeof window !== 'undefined' ? window.location.pathname : '']);
+            if (!elementBelow) {
+              setTextColorClass('text-conex-azul');
+              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+              return;
+            }
 
-  const bgColorClass = 'bg-transparent';
+            const sectionElement = elementBelow.closest('section') || elementBelow.closest('header');
+            
+            if (!sectionElement) {
+              setTextColorClass('text-conex-azul');
+              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+              return;
+            }
+
+            const hasHexagonBackground = sectionElement.querySelector('.absolute.inset-0.z-0') !== null;
+            const sectionStyles = window.getComputedStyle(sectionElement);
+            const sectionBackgroundColor = sectionStyles.backgroundColor;
+            
+            const conexAzulRGB = 'rgb(27, 44, 51)';
+            const conexPrimaryRGB = 'rgb(50, 85, 149)';
+            
+            const hasSolidBlueBackground = 
+              sectionBackgroundColor === conexAzulRGB || 
+              sectionBackgroundColor === conexPrimaryRGB;
+            
+            const hasBlueBackgroundClass = 
+              sectionElement.classList.contains('bg-conex-azul') ||
+              sectionElement.classList.contains('bg-conex-primary') ||
+              sectionElement.classList.contains('bg-gradient-to-br') ||
+              sectionElement.classList.contains('bg-gradient-to-r');
+
+            if (hasHexagonBackground || hasSolidBlueBackground || hasBlueBackgroundClass) {
+              setTextColorClass('text-conex-white');
+              setHoverColorClass('hover:text-conex-azul-light');
+            } else {
+              setTextColorClass('text-conex-azul');
+              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+            }
+          };
+          
+          checkHeaderBackground();
+        }
+      }, 50);
+    }
+  }, [isOpen]);
+
+  // Fecha o menu mobile quando clica em um link
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <header ref={headerRef} className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${bgColorClass}`}>
+    <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-300">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/">
+          <Link href="/" onClick={handleLinkClick}>
             <div className="flex items-center justify-center mt-4">
               <img src={logo.src} alt="Conex Digital" className="h-10 md:h-12" />
             </div>
@@ -152,22 +190,19 @@ export default function Header() {
             <Link href="/" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Inicio
             </Link>
-            <Link href="../parceria" className={`transition-colors duration-300 ${hoverColorClass}`}>
+            <Link href="/parceria" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Seja Parceiro
             </Link>
             <Link href="/servicos" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Certificado Digital
             </Link>
-            <Link href="../contato" className={`transition-colors duration-300 ${hoverColorClass}`}>
+            <Link href="/contato" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Contato
             </Link>
             <Link href="/sobre" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Sobre
             </Link>
           </nav>
-
-          {/* Espaço vazio para equilibrar o layout no mobile */}
-          <div className="md:hidden"></div>
 
           {/* Botão Mobile */}
           <button 
@@ -198,19 +233,19 @@ export default function Header() {
               </svg>
             </button>
             <nav className="flex flex-col space-y-6 text-xl">
-              <Link href="/" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={() => setIsOpen(false)}>
+              <Link href="/" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={handleLinkClick}>
                 Inicio
               </Link>
-              <Link href="/parceria" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={() => setIsOpen(false)}>
+              <Link href="/parceria" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={handleLinkClick}>
                 Seja Parceiro
               </Link>
-              <Link href="/servicos" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={() => setIsOpen(false)}>
+              <Link href="/servicos" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={handleLinkClick}>
                 Certificado Digital
               </Link>
-              <Link href="/contato" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={() => setIsOpen(false)}>
+              <Link href="/contato" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={handleLinkClick}>
                 Contato
               </Link>
-              <Link href="/sobre" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={() => setIsOpen(false)}>
+              <Link href="/sobre" className="text-conex-azul hover:text-conex-azul-light transition py-2 border-b" onClick={handleLinkClick}>
                 Sobre
               </Link>
             </nav>
