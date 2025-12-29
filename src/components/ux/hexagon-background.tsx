@@ -1,17 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
-const useMousePosition = () => {
+// Hook otimizado para posição do mouse com throttle
+const useMousePosition = (throttleDelay = 32) => { // ~30fps
   const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+  const lastUpdateRef = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      const now = Date.now();
+      if (now - lastUpdateRef.current >= throttleDelay) {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+        lastUpdateRef.current = now;
+      }
     };
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [throttleDelay]);
 
   return mousePosition;
 };
@@ -29,70 +36,118 @@ const HexagonBackground = ({
 }: HexagonBackgroundProps) => {
   const mousePosition = useMousePosition();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [grid, setGrid] = useState<{ 
-    cols: number; 
-    rows: number; 
-    hexes: { key: string; cx: number; cy: number }[];
-    containerRect: DOMRect | null;
-  }>({ 
-    cols: 0, 
-    rows: 0, 
-    hexes: [], 
-    containerRect: null 
-  });
+  
+  // Estado otimizado - apenas o necessário
+  const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
+  
+  // Debounce para redimensionamento
+  const resizeTimeoutRef = useRef<NodeJS.Timeout>();
 
-  useEffect(() => {
-    const updateGrid = () => {
-      if (!containerRef.current) return;
-
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const hexWidth = Math.sqrt(3) * size + spacing;
-      const hexHeight = 2 * size + spacing;
-
-      // Usa as dimensões do container, não da janela
-      const containerWidth = containerRect.width;
-      const containerHeight = containerRect.height;
-
-      const cols = Math.ceil(containerWidth / hexWidth) + 2; // +2 para garantir cobertura
-      const rows = Math.ceil(containerHeight / (hexHeight * 0.75)) + 2;
-
-      const hexes = [];
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
-          const cx = col * hexWidth + xOffset;
-          const cy = row * hexHeight * 0.75;
-          hexes.push({ key: `${row}-${col}`, cx, cy });
-        }
-      }
-      setGrid({ cols, rows, hexes, containerRect });
-    };
-
-    updateGrid();
-
-    // Recalcula quando a janela é redimensionada
-    window.addEventListener('resize', updateGrid);
-    return () => window.removeEventListener('resize', updateGrid);
+  // Calcular dimensões do hexágono uma vez
+  const hexDimensions = useMemo(() => {
+    const hexWidth = Math.sqrt(3) * size + spacing;
+    const hexHeight = 2 * size + spacing;
+    return { hexWidth, hexHeight };
   }, [size, spacing]);
 
-  const getHexagonPath = (cx: number, cy: number, s: number) => {
+  // Função para obter o path do hexágono (memoizada)
+  const getHexagonPath = useCallback((cx: number, cy: number, s: number) => {
     const h = (Math.sqrt(3) / 2) * s;
     return `M ${cx} ${cy - s} L ${cx + h} ${cy - s / 2} L ${cx + h} ${cy + s / 2} L ${cx} ${cy + s} L ${cx - h} ${cy + s / 2} L ${cx - h} ${cy - s / 2} Z`;
-  };
+  }, []);
 
-  // Função para verificar se o mouse está dentro do hexágono (relativo ao container)
-  const isMouseInsideHexagon = (cx: number, cy: number, containerRect: DOMRect | null) => {
-    if (!containerRect) return false;
+  // Calcular grid de hexágonos (memoizada)
+  const hexGrid = useMemo(() => {
+    if (!containerRect) return { hexes: [] };
+
+    const { hexWidth, hexHeight } = hexDimensions;
+    const containerWidth = containerRect.width;
+    const containerHeight = containerRect.height;
+
+    const cols = Math.ceil(containerWidth / hexWidth) + 2;
+    const rows = Math.ceil(containerHeight / (hexHeight * 0.75)) + 2;
+
+    const hexes: { key: string; cx: number; cy: number }[] = [];
     
-    // Ajusta as coordenadas do mouse para serem relativas ao container
+    for (let row = 0; row < rows; row++) {
+      const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+      for (let col = 0; col < cols; col++) {
+        hexes.push({
+          key: `${row}-${col}`,
+          cx: col * hexWidth + xOffset,
+          cy: row * hexHeight * 0.75
+        });
+      }
+    }
+
+    return { hexes };
+  }, [containerRect, hexDimensions]);
+
+  // Atualizar containerRect de forma eficiente
+  useEffect(() => {
+    const updateContainerRect = () => {
+      if (containerRef.current) {
+        setContainerRect(containerRef.current.getBoundingClientRect());
+      }
+    };
+
+    updateContainerRect();
+
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+      resizeTimeoutRef.current = setTimeout(updateContainerRect, 100); // Debounce de 100ms
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Verificar hover apenas para hexágonos próximos ao mouse (otimizado)
+  const hoveredHexKey = useMemo(() => {
+    if (!containerRect || !mousePosition) return null;
+
     const relativeMouseX = mousePosition.x - containerRect.left;
     const relativeMouseY = mousePosition.y - containerRect.top;
 
-    const dx = relativeMouseX - cx;
-    const dy = relativeMouseY - cy;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    return distance <= size;
-  };
+    // Encontrar hexágono mais próximo sem percorrer todos
+    const { hexWidth, hexHeight } = hexDimensions;
+    
+    // Estimar a posição aproximada do hexágono
+    const approxCol = Math.floor(relativeMouseX / hexWidth);
+    const approxRow = Math.floor(relativeMouseY / (hexHeight * 0.75));
+    
+    // Verificar apenas hexágonos em uma área 3x3 ao redor da posição estimada
+    const searchRadius = 3;
+    
+    for (let row = approxRow - searchRadius; row <= approxRow + searchRadius; row++) {
+      if (row < 0) continue;
+      
+      for (let col = approxCol - searchRadius; col <= approxCol + searchRadius; col++) {
+        if (col < 0) continue;
+        
+        const xOffset = row % 2 === 0 ? 0 : hexWidth / 2;
+        const cx = col * hexWidth + xOffset;
+        const cy = row * hexHeight * 0.75;
+        
+        const dx = relativeMouseX - cx;
+        const dy = relativeMouseY - cy;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance <= size) {
+          return `${row}-${col}`;
+        }
+      }
+    }
+    
+    return null;
+  }, [mousePosition, containerRect, hexDimensions, size]);
 
   return (
     <div 
@@ -105,8 +160,20 @@ const HexagonBackground = ({
             <stop offset="0%" stopColor="#0066a3" stopOpacity="0" />
             <stop offset="50%" stopColor="#0066a3" stopOpacity="1" />
             <stop offset="100%" stopColor="#0066a3" stopOpacity="0" />
-            <animate attributeName="x1" from="-100%" to="100%" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="x2" from="0%" to="200%" dur="2s" repeatCount="indefinite" />
+            <animate 
+              attributeName="x1" 
+              from="-100%" 
+              to="100%" 
+              dur="2s" 
+              repeatCount="indefinite" 
+            />
+            <animate 
+              attributeName="x2" 
+              from="0%" 
+              to="200%" 
+              dur="2s" 
+              repeatCount="indefinite" 
+            />
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="4" result="coloredBlur" />
@@ -117,8 +184,8 @@ const HexagonBackground = ({
           </filter>
         </defs>
         <g>
-          {grid.hexes.map(({ key, cx, cy }) => {
-            const isHovered = isMouseInsideHexagon(cx, cy, grid.containerRect);
+          {hexGrid.hexes.map(({ key, cx, cy }) => {
+            const isHovered = key === hoveredHexKey;
 
             return (
               <g key={key}>
