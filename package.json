@@ -13,10 +13,11 @@
     "framer-motion": "^12.23.6",
     "lucide-react": "^0.344.0",
     "next": "^15.4.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-hook-form": "^7.61.1",
     "react-intersection-observer": "^9.5.3",
+    "react-server-dom-webpack": "^19.2.3",
     "tailwindcss-animated": "^2.0.0"
   },
   "devDependencies": {
