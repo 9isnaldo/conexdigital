@@ -29,7 +29,9 @@ const Solucoes = () => {
             {/* Problems */}
             <div className="space-y-8">
               <h3 className="text-2xl font-semibold text-red-600 mb-6 flex items-center gap-3">
-                <AlertTriangle className="h-8 w-8" />
+                <div className="geometric-icon">
+                  <AlertTriangle className="h-8 w-8" />
+                </div>
                 Principais Dores dos Empresários
               </h3>
               <div className="space-y-4">
@@ -45,7 +47,9 @@ const Solucoes = () => {
             {/* Solutions */}
             <div className="space-y-8">
               <h3 className="text-2xl font-semibold text-green-600 mb-6 flex items-center gap-3">
-                <CheckCircle2 className="h-8 w-8" />
+                <div className="geometric-icon">
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
                 Nossa Solução Definitiva
               </h3>
               <div className="space-y-4">

@@ -14,9 +14,9 @@ export default function Home() {
       <main>
         <div className="w-full">
             <Hero />
+            <Produtos />
             <Solucoes />
             <Empresa />
-            <Produtos />
             <Processo />
             <FAQ />
         </div>

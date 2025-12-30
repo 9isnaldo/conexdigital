@@ -45,3 +45,173 @@ body {
 .animate-slide-in-right {
   animation: slideInRight 0.7s ease-out forwards;
 }
+
+/* ===== ESTILOS AVANÇADOS - DESIGN DIGITAL MODERNO ===== */
+
+/* Efeito de gradiente suave */
+@keyframes soft-gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Efeito de expansão geométrica */
+@keyframes expand-geometric {
+  0% { 
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  100% { 
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Efeito de linha desenhada */
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Efeito de flutuação minimalista */
+@keyframes minimal-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+/* Efeito de aparência suave */
+@keyframes smooth-appear {
+  from { 
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Efeito de brilho suave */
+@keyframes soft-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(11, 38, 67, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(11, 38, 67, 0.2); }
+}
+
+/* Estilos específicos para seção modern */
+.solucoes-modern {
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* Elementos geométricos decorativos */
+.geometric-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(to right, #0b2643 1px, transparent 1px),
+    linear-gradient(to bottom, #0b2643 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Linhas de conexão */
+.connection-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(11, 38, 67, 0.1) 20%, 
+    rgba(11, 38, 67, 0.3) 50%, 
+    rgba(11, 38, 67, 0.1) 80%, 
+    transparent
+  );
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Cards modernos */
+.modern-card {
+  background: white;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(11, 38, 67, 0.08);
+}
+
+.modern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(11, 38, 67, 0.03),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.modern-card:hover::before {
+  left: 100%;
+}
+
+.modern-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(11, 38, 67, 0.15);
+  box-shadow: 
+    0 10px 30px rgba(11, 38, 67, 0.08),
+    0 1px 3px rgba(11, 38, 67, 0.04);
+}
+
+/* Ícones geométricos */
+.geometric-icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geometric-icon::before,
+.geometric-icon::after {
+  content: '';
+  position: absolute;
+  border: 2px solid;
+  border-radius: 12px;
+  animation: expand-geometric 2s ease-in-out infinite alternate;
+}
+
+.geometric-icon::before {
+  width: 100%;
+  height: 100%;
+  border-color: var(--conex-azul-light);
+  animation-delay: 0s;
+}
+
+.geometric-icon::after {
+  width: 70%;
+  height: 70%;
+  border-color: var(--conex-primary);
+  animation-delay: 0.5s;
+}
+
+
+@media (max-width: 768px) {
+  .geometric-grid {
+    background-size: 30px 30px;
+  }
+}
+
+
