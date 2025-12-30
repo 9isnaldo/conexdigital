@@ -52,7 +52,7 @@ const Produtos = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-10">
+                    <div className="grid md:grid-cols-2 gap-12">
                         {products.map((product, index) => {
                             return (
                                 <div 
@@ -63,7 +63,7 @@ const Produtos = () => {
                                     {/* Borda animada */}
                                     <div className="card-produto-border"></div>
                                     
-                                    {/* Tag "MAIS POPULAR" animada */}
+                                    {/* Tag "MAIS POPULAR" - Agora sempre visível no canto superior direito */}
                                     {product.popular && (
                                         <span className="card-produto-popular-tag">MAIS POPULAR</span>
                                     )}

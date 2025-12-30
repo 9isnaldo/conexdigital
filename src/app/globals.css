@@ -136,21 +136,21 @@ body {
 
 .card-produto-popular-tag {
   position: absolute;
-  left: 50%;
-  bottom: 13px;
-  transform: translateX(-50%);
+  top: -8px;
+  right: 16px;
   font-size: 12px;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 10px 20px;
   color: white;
-  background: #00c6e8;
-  opacity: 0;
-  letter-spacing: 3px;
-  transition: all 0.5s ease-in-out;
-  font-weight: 600;
-  border-radius: 20px;
-  z-index: 10;
-  box-shadow: 0 2px 10px rgba(0, 198, 232, 0.3);
+  background: #f97316;
+  opacity: 1;
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-radius: 8px;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: rotate(2deg);
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
 }
 
 .card-produto-content {
@@ -281,8 +281,13 @@ body {
   border-color: #00c6e8;
   border-radius: 16px;
   box-shadow: 0 15px 50px rgba(0, 198, 232, 0.25);
-  
 }
+
+.card-produto:hover .card-produto-popular-tag {
+  transform: rotate(2deg); /* Mantém a mesma rotação */
+  top: -8px; /* Mantém a mesma posição */
+}
+
 
 .card-produto:hover .card-produto-border {
   inset: 10px;
@@ -290,10 +295,10 @@ body {
   transform: rotate(0);
 }
 
-.card-produto:hover .card-produto-popular-tag {
-  opacity: 1;
-  letter-spacing: 6px;
-  transform: translateX(-50%);
+.card-produto-popular-tag:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #fb923c, #f97316);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
 }
 
 .card-produto:hover .card-produto-cta::before {
@@ -309,6 +314,15 @@ body {
   background: #00b4d8; 
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(0, 198, 232, 0.4);
+}
+
+@keyframes badge-glow {
+  0% {
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.5), 0 0 20px rgba(249, 115, 22, 0.1);
+  }
 }
 
 @media (max-width: 768px) {
