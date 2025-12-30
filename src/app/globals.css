@@ -33,7 +33,6 @@ body {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Animações personalizadas */
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -46,64 +45,6 @@ body {
   animation: slideInRight 0.7s ease-out forwards;
 }
 
-/* ===== ESTILOS AVANÇADOS - DESIGN DIGITAL MODERNO ===== */
-
-/* Efeito de gradiente suave */
-@keyframes soft-gradient-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Efeito de expansão geométrica */
-@keyframes expand-geometric {
-  0% { 
-    transform: scale(0.8) rotate(0deg);
-    opacity: 0;
-  }
-  100% { 
-    transform: scale(1) rotate(360deg);
-    opacity: 1;
-  }
-}
-
-/* Efeito de linha desenhada */
-@keyframes draw-line {
-  to { stroke-dashoffset: 0; }
-}
-
-/* Efeito de flutuação minimalista */
-@keyframes minimal-float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.02); }
-}
-
-/* Efeito de aparência suave */
-@keyframes smooth-appear {
-  from { 
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Efeito de brilho suave */
-@keyframes soft-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(11, 38, 67, 0.1); }
-  50% { box-shadow: 0 0 30px rgba(11, 38, 67, 0.2); }
-}
-
-/* Estilos específicos para seção modern */
-.solucoes-modern {
-  position: relative;
-  background: white;
-  overflow: hidden;
-}
-
-/* Elementos geométricos decorativos */
 .geometric-grid {
   position: absolute;
   top: 0;
@@ -118,61 +59,6 @@ body {
   background-size: 50px 50px;
 }
 
-/* Linhas de conexão */
-.connection-line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(11, 38, 67, 0.1) 20%, 
-    rgba(11, 38, 67, 0.3) 50%, 
-    rgba(11, 38, 67, 0.1) 80%, 
-    transparent
-  );
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-
-/* Cards modernos */
-.modern-card {
-  background: white;
-  border-radius: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(11, 38, 67, 0.08);
-}
-
-.modern-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(11, 38, 67, 0.03),
-    transparent
-  );
-  transition: left 0.7s ease;
-}
-
-.modern-card:hover::before {
-  left: 100%;
-}
-
-.modern-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(11, 38, 67, 0.15);
-  box-shadow: 
-    0 10px 30px rgba(11, 38, 67, 0.08),
-    0 1px 3px rgba(11, 38, 67, 0.04);
-}
 
 /* Ícones geométricos */
 .geometric-icon {
@@ -207,6 +93,16 @@ body {
   animation-delay: 0.5s;
 }
 
+@keyframes expand-geometric {
+  0% { 
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  100% { 
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
 
 @media (max-width: 768px) {
   .geometric-grid {
@@ -214,4 +110,213 @@ body {
   }
 }
 
+.card-produto {
+  width: 100%;
+  background: #0b2643;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  border: 1px solid rgba(0, 198, 232, 0.1);
+  box-shadow: 0 4px 20px rgba(11, 38, 67, 0.15);
+}
 
+.card-produto-border {
+  position: absolute;
+  inset: 0px;
+  border: 2px solid #00c6e8;
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: all 0.5s ease-in-out;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.card-produto-popular-tag {
+  position: absolute;
+  left: 50%;
+  bottom: 13px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  color: white;
+  background: #00c6e8;
+  opacity: 0;
+  letter-spacing: 3px;
+  transition: all 0.5s ease-in-out;
+  font-weight: 600;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 198, 232, 0.3);
+}
+
+.card-produto-content {
+  padding: 2rem;
+  transition: all 0.5s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-produto-icon-container {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00c6e8, #325595);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-produto-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  transition: all 0.5s ease-in-out;
+  color: white;
+}
+
+.card-produto-subtitle {
+  text-align: center;
+  color: #00c6e8;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-produto-section {
+  margin-bottom: 1.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.card-produto-section-title {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+}
+
+.card-produto-benefits {
+  list-style: none;
+  padding: 0;
+}
+
+.card-produto-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: #e5e7eb;
+}
+
+.card-produto-benefit-icon {
+  color: #00c6e8;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.card-produto-price {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin: auto 0 1.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.card-produto-cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+}
+
+.card-produto-cta-default {
+  background: white;
+  color: #0b2643;
+}
+
+.card-produto-cta-primary {
+  background: #00c6e8;
+  color: white;
+}
+
+.card-produto-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
+  z-index: -1;
+}
+
+
+.card-produto:hover {
+  border-radius: 0;
+  transform: scale(1.05);
+  border-color: #00c6e8;
+  border-radius: 16px;
+  box-shadow: 0 15px 50px rgba(0, 198, 232, 0.25);
+  
+}
+
+.card-produto:hover .card-produto-border {
+  inset: 10px;
+  opacity: 1;
+  transform: rotate(0);
+}
+
+.card-produto:hover .card-produto-popular-tag {
+  opacity: 1;
+  letter-spacing: 6px;
+  transform: translateX(-50%);
+}
+
+.card-produto:hover .card-produto-cta::before {
+  left: 100%;
+}
+
+.card-produto:hover .card-produto-cta-default {
+  background: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.card-produto:hover .card-produto-cta-primary {
+  background: #00b4d8; 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 198, 232, 0.4);
+}
+
+@media (max-width: 768px) {
+  .card-produto:hover {
+    transform: scale(1.02);
+  }
+  
+  .card-produto:hover .card-produto-border {
+    inset: 5px;
+  }
+}
