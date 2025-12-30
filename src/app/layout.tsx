@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 import WhatsappButton from '@/components/ui/whatsapp-button';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const montserrat = Montserrat({ 
   subsets: ['latin'],
@@ -23,10 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${montserrat.variable}`}>
-      <body className={`font-sans ${montserrat.className} bg-white min-h-screen`}>
+      <body className={`font-sans ${montserrat.className} bg-conex-white min-h-screen`}>
         <Header />
         {children}
         <WhatsappButton />
+        <Footer />
       </body>
     </html>
   );

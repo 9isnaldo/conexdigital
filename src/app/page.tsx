@@ -21,8 +21,6 @@ export default function Home() {
             <FAQ />
         </div>
       </main>
-
-      <Footer />
     </>
   );
 }

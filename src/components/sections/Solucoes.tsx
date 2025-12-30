@@ -18,7 +18,7 @@ const Solucoes = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-100">
+    <section className="py-20 bg-conex-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl font-bold text-center mb-16 text-conex-azul">
@@ -34,7 +34,7 @@ const Solucoes = () => {
                 </div>
                 Principais Dores dos Empresários
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-8">
                 {problems.map((problem, index) => (
                   <div key={index} className="flex items-start gap-3 p-4 glass rounded-lg">
                     <AlertTriangle className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
