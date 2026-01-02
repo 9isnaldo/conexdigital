@@ -39,7 +39,7 @@ const Produtos = () => {
     ];
 
     return (
-        <section className="py-20 bg-conex-white">
+        <section className="py-16 bg-conex-white">
             <div className="container mx-auto px-6">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16 animate-fade-in-up">
@@ -57,7 +57,7 @@ const Produtos = () => {
                             return (
                                 <div 
                                     key={index} 
-                                    className="card-produto"
+                                    className="card-produto animate-fade-in-up"
                                     style={{ animationDelay: `${index * 0.1}s` }}
                                 >
                                     {/* Borda animada */}

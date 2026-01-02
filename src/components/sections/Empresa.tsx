@@ -22,15 +22,15 @@ const Empresa = () => {
     {
       icon: Users,
       title: "Experiência Comprovada",
-      description: "Mais de 3.000 certificados emitidos e 05 anos de mercado com excelência no atendimento."
+      description: "Mais de 5.000 certificados emitidos e 10 anos de mercado com excelência no atendimento."
     }
   ];
 
   return (
-    <section className="py-20 bg-conex-white">
-      <div className="container mx-auto">
+    <section className="py-16 bg-conex-white">
+      <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-conex-azul animate-fade-in-up">
+          <h2 className="text-5xl font-bold mb-6 text-conex-azul animate-fade-in-up">
             Por que Escolher a <span className="text-conex-primary">Conex Digital</span>?
           </h2>
           <p className="text-xl text-gray-700 mb-16 max-w-3xl mx-auto animate-fade-in-up">
@@ -49,17 +49,17 @@ const Empresa = () => {
                 >
                   <div className="card-3d-container h-full">
                     <div className="card-3d h-full">
+                      {/* Frente do card - visível inicialmente */}
                       <div className="front-content">
-                        <div className="w-16 h-16 rounded-full flex items-center justify-center" 
-                             style={{ background: 'linear-gradient(135deg, #325595, #00c6e8)' }}>
-                          <IconComponent className="h-8 w-8 text-white" />
+                        <div className="icon-wrapper">
+                          <IconComponent className="h-10 w-10 text-white" />
                         </div>
                         <p>{feature.title}</p>
                       </div>
+                      
+                      {/* Verso do card - aparece no hover */}
                       <div className="content">
-                        <p className="text-xl leading-relaxed">
-                          {feature.description}
-                        </p>
+                        <p>{feature.description}</p>
                       </div>
                     </div>
                   </div>
