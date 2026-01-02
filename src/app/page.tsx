@@ -6,6 +6,7 @@ import Solucoes from '@/components/sections/Solucoes';
 import Empresa from '@/components/sections/Empresa';
 import Produtos from '@/components/sections/Produtos';
 import Processo from '@/components/sections/Processo';
+import Uso from '@/components/sections/Uso';
 import FAQ from '@/components/sections/FAQ';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
             <Solucoes />
             <Empresa />
             <Processo />
+            <Uso />
             <FAQ />
         </div>
       </main>

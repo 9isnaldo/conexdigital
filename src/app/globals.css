@@ -724,3 +724,113 @@ body {
     max-width: 220px;
   }
 }
+
+
+/* ===== CARROSSEL - MANTENDO EXATAMENTE COMO NO PROJETO ANTIGO ===== */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 0;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  will-change: transform;
+  animation: slide 80s linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 20px -1px rgba(11, 38, 67, 0.1),
+    0 2px 8px -1px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-item-icon {
+  color: #325595;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.carousel-item-text {
+  font-weight: 600;
+  color: #0b2643;
+  white-space: normal;
+  line-height: 1.4;
+  font-size: 1.1rem;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-300px * 8 - 1.5rem * 8));
+  }
+}
+
+@media (min-width: 768px) {
+  .carousel-track {
+    animation: slide 90s linear infinite;
+  }
+  
+  .carousel-container {
+    padding: 4rem 0;
+  }
+}
+
+.carousel-gradient-left,
+.carousel-gradient-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.carousel-gradient-left {
+  left: 0;
+  background: linear-gradient(to right, #0b2643 0%, transparent 100%);
+}
+
+.carousel-gradient-right {
+  right: 0;
+  background: linear-gradient(to left, #0b2643 0%, transparent 100%);
+}
+
+@media (max-width: 767px) {
+  .carousel-container {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
