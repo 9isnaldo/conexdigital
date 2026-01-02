@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Phone, MessageCircle } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Phone, MessageCircle } from "lucide-react";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -42,6 +42,10 @@ const FAQ = () => {
     }
   ];
 
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section className="py-20 px-6 bg-gray-100">
       <div className="max-w-4xl mx-auto">
@@ -60,39 +64,46 @@ const FAQ = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden glass"
+              className="faq-item-wrapper"
             >
-              <button
-                className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-300"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              >
-                <h3 className="font-semibold text-lg text-gray-900 pr-4">
-                  {faq.question}
-                </h3>
-                <ChevronDown
-                  className={`w-6 h-6 text-[#325595] transition-transform duration-300 flex-shrink-0 ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-              
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-8 pb-6">
-                      <p className="text-gray-700 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Balão aparece ACIMA do card (para TODOS os cards) */}
+              <div className={`faq-tooltip-container ${openIndex === index ? 'faq-tooltip-open' : ''}`}>
+                <div className="faq-tooltip">
+                  <span>{faq.answer}</span>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg">
+                <div className="px-8 py-6 flex justify-between items-center">
+                  <h3 className="font-semibold text-lg text-gray-900 pr-4">
+                    {faq.question}
+                  </h3>
+                  
+                  {/* Wrapper do botão com animação */}
+                  <div className="wrapper">
+                    <input
+                      type="checkbox"
+                      checked={openIndex === index}
+                      onChange={() => handleToggle(index)}
+                      aria-label={`Toggle ${faq.question}`}
+                    />
+                    <div className="btn"></div>
+
+                    {/* Efeito visual de partículas */}
+                    <svg viewBox="0 0 300 300">
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                      <circle className="shape" cx="150" cy="50" r="7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
