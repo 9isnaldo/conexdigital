@@ -28,7 +28,7 @@ const Solucoes = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Problems */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-semibold text-red-600 mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-semibold text-red-500 mb-6 flex items-center gap-3">
                 <div className="geometric-icon">
                   <AlertTriangle className="h-8 w-8" />
                 </div>
@@ -37,7 +37,7 @@ const Solucoes = () => {
               <div className="space-y-8">
                 {problems.map((problem, index) => (
                   <div key={index} className="flex items-start gap-3 p-4 glass rounded-lg">
-                    <AlertTriangle className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
+                    <AlertTriangle className="h-5 w-5 text-red-500 mt-1 flex-shrink-0" />
                     <p className="text-conex-azul">{problem}</p>
                   </div>
                 ))}

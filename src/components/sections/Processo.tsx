@@ -53,21 +53,17 @@ const Processo = () => {
                   className="card-container animate-fade-in-up" 
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Número acima do card */}
                   <div className="card-step-number">
                     {step.number}
                   </div>
                   
-                  {/* Card com ondas */}
                   <div className="conex-wave-card">
-                    {/* Ondas animadas */}
                     <div className="waves-container">
                       <div className="conex-wave"></div>
                       <div className="conex-wave"></div>
                       <div className="conex-wave"></div>
                     </div>
                     
-                    {/* Conteúdo do card */}
                     <div className="conex-card-content">
                       <IconComponent className="conex-step-icon" />
                       
@@ -86,7 +82,7 @@ const Processo = () => {
           </div>
 
           {/* Informação adicional */}
-          <div className="mt-20 text-center animate-fade-in">
+          <div className="mt-6 text-center animate-fade-in">
             <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 border border-[#325595]/20 shadow-lg">
               <Zap className="h-7 w-7 text-[#00c6e8]" />
               <p className="text-lg font-semibold text-[#0b2643]">

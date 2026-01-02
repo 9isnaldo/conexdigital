@@ -47,19 +47,25 @@ const Empresa = () => {
                   className="h-72 animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="card-3d-container h-full">
-                    <div className="card-3d h-full">
-                      {/* Frente do card - visível inicialmente */}
-                      <div className="front-content">
-                        <div className="icon-wrapper">
-                          <IconComponent className="h-10 w-10 text-white" />
+                  <div className="empresa-card-container h-full">
+                    {/* Borda tracejada com atraso sutil */}
+                    <div className="empresa-card-border"></div>
+                    
+                    {/* Card principal com efeito de brilho */}
+                    <div className="empresa-card h-full">
+                      {/* Conteúdo inicial com transição refinada */}
+                      <div className="empresa-card-initial">
+                        <div className="empresa-card-icon-container">
+                          <div className="empresa-card-icon">
+                            <IconComponent className="h-10 w-10 text-white" />
+                          </div>
                         </div>
-                        <p>{feature.title}</p>
+                        <p className="empresa-card-title">{feature.title}</p>
                       </div>
                       
-                      {/* Verso do card - aparece no hover */}
-                      <div className="content">
-                        <p>{feature.description}</p>
+                      {/* Descrição com transição e zoom sutil */}
+                      <div className="empresa-card-hidden">
+                        <p className="empresa-card-description">{feature.description}</p>
                       </div>
                     </div>
                   </div>
