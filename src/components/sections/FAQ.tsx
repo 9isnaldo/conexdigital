@@ -13,10 +13,6 @@ const FAQ = () => {
       answer: "O Certificado Digital é um documento eletrônico que funciona como uma identidade virtual, garantindo a autenticidade e integridade de documentos e transações online. É como se fosse uma carteira de identidade digital com validade jurídica."
     },
     {
-      question: "Para quem é obrigatório o Certificado Digital?",
-      answer: "É obrigatório para empresas que faturam mais de R$ 4,8 milhões por ano, para emissão de NF-e, e para diversas operações com órgãos governamentais. Também é altamente recomendado para profissionais liberais que precisam assinar documentos digitalmente."
-    },
-    {
       question: "Quais documentos são necessários para emitir?",
       answer: "Para e-CPF: RG, CPF e comprovante de residência. Para e-CNPJ: Cartão CNPJ, documento do responsável legal (RG/CPF), contrato social ou documentos constitutivos da empresa. Todo o processo pode ser feito digitalmente."
     },
@@ -32,14 +28,6 @@ const FAQ = () => {
       question: "Qual a validade do Certificado Digital?",
       answer: "O Certificado Digital A1 tem validade de 1 ano, e o A3 pode ter validade de 1 a 3 anos, dependendo do tipo escolhido. Oferecemos renovação automática para sua comodidade."
     },
-    {
-      question: "O certificado funciona em qualquer sistema?",
-      answer: "Sim! Nossos certificados são compatíveis com todos os principais sistemas fiscais, ERPs, bancos e órgãos governamentais. Oferecemos suporte completo para instalação e configuração."
-    },
-    {
-      question: "Como funciona o suporte técnico?",
-      answer: "Oferecemos suporte técnico especializado via telefone, WhatsApp e e-mail durante todo o período de validade do certificado. Nossa equipe te ajuda na instalação, configuração e resolução de qualquer dúvida."
-    }
   ];
 
   const handleToggle = (index: number) => {
@@ -52,7 +40,7 @@ const FAQ = () => {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-5xl font-bold text-gray-900 text-center mb-16"
+          className="text-3xl md:text-5xl font-bold text-conex-azul text-center mb-16"
         >
           Perguntas Frequentes
         </motion.h2>
@@ -111,29 +99,56 @@ const FAQ = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center mt-16"
+          className="text-center mt-16 px-4"
         >
-          <div className="glass p-8 rounded-3xl text-gray-900 shadow-2xl max-w-2xl mx-auto" style={{ backgroundColor: 'rgba(50, 85, 149, 0.1)' }}>
-            <h3 className="text-lg mb-4 font-medium text-[#325595]">Ainda tem dúvidas?</h3>
-            <p className="text-gray-700 mb-6">
-              Nossa equipe de especialistas está pronta para esclarecer todas as suas questões 
-              sobre certificação digital.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="#" 
-                className="inline-flex items-center justify-center px-6 py-4 bg-green-600 text-white rounded-full font-semibold hover:bg-green-700 transition-all duration-300 shadow-lg"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Ligar Agora
-              </a>
-              <a 
-                href="#" 
-                className="inline-flex items-center justify-center px-6 py-4 bg-[#325595] text-white rounded-full font-semibold hover:bg-[#2a4780] transition-all duration-300 shadow-lg"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp
-              </a>
+          <div className="relative max-w-4xl mx-auto">
+            <div className="duvidas-card-container">
+              <div className="duvidas-bg-layer layer-1"></div>
+              <div className="duvidas-bg-layer layer-2"></div>
+              <div className="duvidas-bg-layer layer-3"></div>
+              
+              <div className="duvidas-diagonal-line"></div>
+              
+              <div className="duvidas-content">
+                <div className="duvidas-header">
+                  <h3 className="duvidas-title">
+                    Ainda tem dúvidas?
+                  </h3>
+                </div>
+
+                <p className="duvidas-description">
+                  Nossa equipe de especialistas está pronta para esclarecer todas as suas questões 
+                  sobre certificação digital.
+                </p>
+
+                <div className="duvidas-cta-container">
+                  <a href="#" className="duvidas-btn duvidas-btn-primary">
+                    <span className="duvidas-btn-bg"></span>
+                    <span className="duvidas-btn-border"></span>
+                    <Phone className="w-5 h-5" />
+                    <span>Ligar Agora</span>
+                    <span className="duvidas-btn-shine"></span>
+                  </a>
+
+                  <a href="#" className="duvidas-btn duvidas-btn-secondary">
+                    <span className="duvidas-btn-bg"></span>
+                    <span className="duvidas-btn-border"></span>
+                    <MessageCircle className="w-5 h-5" />
+                    <span>WhatsApp</span>
+                    <span className="duvidas-btn-shine"></span>
+                  </a>
+                </div>
+
+                <div className="duvidas-float-element element-1">
+                  <div className="float-inner"></div>
+                </div>
+                <div className="duvidas-float-element element-2">
+                  <div className="float-inner"></div>
+                </div>
+                <div className="duvidas-float-element element-3">
+                  <div className="float-inner"></div>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>

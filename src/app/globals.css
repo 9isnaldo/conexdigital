@@ -1088,3 +1088,320 @@ body {
     font-size: 14px;
   }
 }
+
+/* CARD DE DÚVIDAS - DESIGN ÚNICO */
+.duvidas-card-container {
+  position: relative;
+  background: linear-gradient(135deg, #0b2643 0%, #1a3a5c 50%, #0b2643 100%);
+  border-radius: 24px;
+  padding: 3.5rem 2.5rem;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px -12px rgba(11, 38, 67, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Camadas de fundo com movimento parallax */
+.duvidas-bg-layer {
+  position: absolute;
+  border-radius: 16px;
+  opacity: 0.15;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.duvidas-bg-layer.layer-1 {
+  top: -20%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00c6e8 0%, transparent 70%);
+  animation: float-1 8s ease-in-out infinite;
+}
+
+.duvidas-bg-layer.layer-2 {
+  bottom: -15%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #325595 0%, transparent 70%);
+  animation: float-2 10s ease-in-out infinite;
+}
+
+.duvidas-bg-layer.layer-3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #00c6e8 0%, transparent 60%);
+  animation: pulse-glow 4s ease-in-out infinite;
+  opacity: 0.08;
+}
+
+/* Linha diagonal decorativa */
+.duvidas-diagonal-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 198, 232, 0.1) 50%, transparent 100%);
+  transform: skewX(-15deg);
+  animation: slide-diagonal 3s ease-in-out infinite;
+}
+
+/* Conteúdo */
+.duvidas-content {
+  position: relative;
+  z-index: 10;
+}
+
+.duvidas-header {
+  margin-bottom: 2rem;
+}
+
+.duvidas-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.duvidas-description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Container dos botões */
+.duvidas-cta-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botões redesenhados */
+.duvidas-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.duvidas-btn-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.duvidas-btn-border {
+  position: absolute;
+  inset: -2px;
+  z-index: -2;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.duvidas-btn-shine {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.duvidas-btn-primary .duvidas-btn-bg {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.duvidas-btn-secondary .duvidas-btn-bg {
+  background: linear-gradient(135deg, #00c6e8 0%, #325595 100%);
+}
+
+.duvidas-btn-primary {
+  color: white;
+  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
+}
+
+.duvidas-btn-secondary {
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 198, 232, 0.3);
+}
+
+.duvidas-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.duvidas-btn-primary:hover {
+  box-shadow: 0 15px 40px rgba(22, 163, 74, 0.5);
+}
+
+.duvidas-btn-secondary:hover {
+  box-shadow: 0 15px 40px rgba(0, 198, 232, 0.5);
+}
+
+.duvidas-btn:hover .duvidas-btn-shine {
+  left: 100%;
+}
+
+.duvidas-btn:hover .duvidas-btn-border {
+  opacity: 1;
+}
+
+.duvidas-btn:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* Elementos flutuantes decorativos com movimento aleatório */
+.duvidas-float-element {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.duvidas-float-element .float-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 198, 232, 0.3);
+  animation: rotate-scale 6s linear infinite;
+}
+
+.duvidas-float-element.element-1 {
+  top: 10%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  animation: float-random-1 12s ease-in-out infinite;
+}
+
+.duvidas-float-element.element-2 {
+  bottom: 15%;
+  right: 8%;
+  width: 45px;
+  height: 45px;
+  animation: float-random-2 15s ease-in-out infinite;
+}
+
+.duvidas-float-element.element-3 {
+  top: 60%;
+  right: 15%;
+  width: 35px;
+  height: 35px;
+  animation: float-random-3 18s ease-in-out infinite;
+}
+
+/* Animações */
+@keyframes float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-25px, 25px) scale(1.15); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.12; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes slide-diagonal {
+  0%, 100% { opacity: 0.1; transform: skewX(-15deg) translateX(0); }
+  50% { opacity: 0.2; transform: skewX(-15deg) translateX(20px); }
+}
+
+@keyframes rotate-scale {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Movimentos aleatórios para os círculos */
+@keyframes float-random-1 {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30px, -20px); }
+  50% { transform: translate(-15px, 35px); }
+  75% { transform: translate(25px, 15px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes float-random-2 {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-35px, -25px); }
+  40% { transform: translate(20px, -40px); }
+  60% { transform: translate(-25px, 20px); }
+  80% { transform: translate(15px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes float-random-3 {
+  0% { transform: translate(0, 0); }
+  15% { transform: translate(40px, 25px); }
+  35% { transform: translate(-20px, -30px); }
+  55% { transform: translate(30px, -15px); }
+  75% { transform: translate(-35px, 25px); }
+  90% { transform: translate(15px, -20px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .duvidas-card-container {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .duvidas-title {
+    font-size: 2rem;
+  }
+
+  .duvidas-description {
+    font-size: 1rem;
+  }
+
+  .duvidas-cta-container {
+    flex-direction: column;
+  }
+
+  .duvidas-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .duvidas-float-element {
+    display: none;
+  }
+
+  .duvidas-bg-layer.layer-1,
+  .duvidas-bg-layer.layer-2 {
+    width: 250px;
+    height: 250px;
+  }
+}
