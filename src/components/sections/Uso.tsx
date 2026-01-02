@@ -26,14 +26,18 @@ export default function OndeUsar({
     'Assinatura de contratos digitais',
     'Acesso ao e-CAC da Receita Federal',
     'Procurações eletrônicas',
-    'Transações bancárias',
     'Acesso ao Gov.br',
-    'INSS Digital',
-    'Carteira de Trabalho Digital',
     'Consulta ao PIS/PASEP',
     'Participação em licitações',
     'Certidões digitais',
-    'Consulta processual'
+    'Consulta processual',
+    'Emissão de Notas Fiscais Eletrônicas (NF-e)',
+    'SPED (Sistema Público de Escrituração Digital)',
+    'Declarações à Receita Federal',
+    'Assinatura de contratos comerciais',
+    'Procurações eletrônicas',
+    'Certidões negativas',
+    'Licitações eletrônicas'
   ]
 
   const duplicatedUsos = [...usos, ...usos]
@@ -48,10 +52,7 @@ export default function OndeUsar({
 
   return (
     <section 
-      className="py-16"
-      style={{
-        background: backgroundColor
-      }}
+      className="py-16 bg-conex-azul"
     >
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4">

@@ -284,8 +284,8 @@ body {
 }
 
 .card-produto:hover .card-produto-popular-tag {
-  transform: rotate(2deg); /* Mantém a mesma rotação */
-  top: -8px; /* Mantém a mesma posição */
+  transform: rotate(2deg);
+  top: -8px;
 }
 
 
@@ -335,9 +335,6 @@ body {
   }
 }
 
-/* ===== CARD 3D MODERNO - CONEX DIGITAL (VERSÃO FINAL) ===== */
-
-/* VERSÃO MELHORADA - COM TODOS OS REFINAMENTOS */
 .empresa-card-container {
   position: relative;
   width: 100%;
@@ -358,7 +355,7 @@ body {
   box-shadow: 0 10px 20px rgba(11, 38, 67, 0.1);
 }
 
-/* Efeito de brilho sutil no hover */
+/* Efeito de brilho */
 .empresa-card::before {
   content: '';
   position: absolute;
@@ -459,7 +456,6 @@ body {
   transition: opacity 0.3s ease-in-out 0.1s;
 }
 
-/* Hovers refinados */
 .empresa-card-container:hover .empresa-card-border {
   opacity: 1;
 }
@@ -494,7 +490,6 @@ body {
   box-shadow: 0 6px 20px rgba(50, 85, 149, 0.4);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .empresa-card-initial {
     padding: 1.5rem;
@@ -553,7 +548,7 @@ body {
   height: 64px;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 2rem; /* 32px - BEM GRANDE */
+  font-size: 2rem;
   background: linear-gradient(135deg, #325595, #0b2643);
   color: white;
   box-shadow: 0 8px 25px rgba(11, 38, 67, 0.3);
@@ -565,11 +560,11 @@ body {
   box-shadow: 0px 8px 28px -9px rgba(11, 38, 67, 0.2);
   position: relative;
   width: 100%;
-  height: 360px; /* AUMENTADO de 330px */
+  height: 360px;
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 32px; /* Espaço para o número */
+  margin-top: 32px;
 }
 
 .conex-wave-card:hover {
@@ -725,8 +720,6 @@ body {
   }
 }
 
-
-/* ===== CARROSSEL - MANTENDO EXATAMENTE COMO NO PROJETO ANTIGO ===== */
 .carousel-container {
   position: relative;
   width: 100%;
