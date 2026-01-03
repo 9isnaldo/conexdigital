@@ -169,41 +169,37 @@ const Parceria = () => {
         </div>
       </section>
 
-      {/* Seção Sobre */}
-<section className="py-20 px-6 bg-gray-50 mb-12">
-  <div className="container mx-auto max-w-6xl">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-conex-azul mb-4">Por que escolher a CONEX DIGITAL?</h2>
-      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-        Empresa especializada em certificação digital, com foco na excelência do atendimento 
-        e satisfação do cliente através de uma rede sólida de parceiros.
-      </p>
-    </div>
-    
-    <div className="parceria-carousel-container">
-      <div className="parceria-card-3d">
-        {benefits.map((benefit, index) => {
-          const IconComponent = benefit.icon;
-          return (
-            <div key={index} className="parceria-carousel-card">
-              <div className="parceria-carousel-icon">
-                <IconComponent className="w-7 h-7" />
-              </div>
-              <h4 className="parceria-carousel-title">{benefit.title}</h4>
-              <p className="parceria-carousel-text">{benefit.text}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-    
-  </div>
-</section>
 
-      {/* CTA Final */}
-      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
-      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
-      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
+      <section className="py-20 px-6 bg-gray-50 mb-12">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-conex-azul mb-4">Por que escolher a CONEX DIGITAL?</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Empresa especializada em certificação digital, com foco na excelência do atendimento 
+              e satisfação do cliente através de uma rede sólida de parceiros.
+            </p>
+          </div>
+          
+          <div className="parceria-carousel-container">
+            <div className="parceria-card-3d">
+              {benefits.map((benefit, index) => {
+                const IconComponent = benefit.icon;
+                return (
+                  <div key={index} className="parceria-carousel-card">
+                    <div className="parceria-carousel-icon">
+                      <IconComponent className="w-7 h-7" />
+                    </div>
+                    <h4 className="parceria-carousel-title">{benefit.title}</h4>
+                    <p className="parceria-carousel-text">{benefit.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
       <section className="py-16 bg-conex-white">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
@@ -262,7 +258,6 @@ const Parceria = () => {
             {/* Informação adicional */}
             <div className="mt-16 text-center animate-fade-in">
               <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 border border-[#325595]/20 shadow-lg">
-                <CheckCircle className="h-7 w-7 text-[#00c6e8]" />
                 <p className="text-lg font-semibold text-[#0b2643]">
                   Obrigado pela confiança! <span className="text-[#00c6e8] font-bold">CONEX DIGITAL</span> - Conectando você ao futuro digital
                 </p>
