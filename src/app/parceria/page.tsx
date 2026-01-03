@@ -201,34 +201,73 @@ const Parceria = () => {
 </section>
 
       {/* CTA Final */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-conex-azul">
-              Vamos Construir o <span className="text-conex-azul-light">Futuro</span> Juntos!
-            </h2>
-            <p className="text-lg text-gray-600">
-              Entre em contato e descubra como transformar seu negócio
-            </p>
-          </div>
-          
-          <div className="parceria-steps-grid mb-12">
-            {[
-              "Entre em contato conosco",
-              "Agende reunião de apresentação",
-              "Inicie como parceiro",
-              "Comece a lucrar"
-            ].map((step, index) => (
-              <div key={index} className="parceria-step-item">
-                <div className="parceria-step-number">{index + 1}</div>
-                <p className="text-gray-700 font-medium">{step}</p>
+      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
+      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
+      {/* CTA Final - COM ESTILIZAÇÃO DO COMPONENTE PROCESSO */}
+      <section className="py-16 bg-conex-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16 animate-fade-in-up">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-conex-azul">
+                Vamos Construir o <span className="text-[#00c6e8]">Futuro</span> Juntos!
+              </h2>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                Entre em contato e descubra como transformar seu negócio
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                "Entre em contato conosco via WhatsApp ou telefone para conhecer nossa proposta",
+                "Agende uma reunião de apresentação com nossa equipe comercial",
+                "Assine o contrato e tenha acesso a nossa plataforma completa", 
+                "Comece a vender certificados digitais e lucrar com nossa parceria"
+              ].map((description, index) => {
+                const icons = [Phone, MessageCircle, CheckCircle, TrendingUp];
+                const IconComponent = icons[index];
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="card-container animate-fade-in-up" 
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="card-step-number">
+                      {index + 1}
+                    </div>
+                    
+                    <div className="conex-wave-card">
+                      <div className="waves-container">
+                        <div className="conex-wave"></div>
+                        <div className="conex-wave"></div>
+                        <div className="conex-wave"></div>
+                      </div>
+                      
+                      <div className="conex-card-content" style={{ justifyContent: 'center', paddingTop: '1.5rem' }}>
+                        <IconComponent 
+                          className="conex-step-icon" 
+                          style={{ marginBottom: '1.5rem' }} 
+                        />
+                        
+                        <p className="conex-step-description" style={{ textAlign: 'center' }}>
+                          {description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Informação adicional */}
+            <div className="mt-16 text-center animate-fade-in">
+              <div className="inline-flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 border border-[#325595]/20 shadow-lg">
+                <CheckCircle className="h-7 w-7 text-[#00c6e8]" />
+                <p className="text-lg font-semibold text-[#0b2643]">
+                  Obrigado pela confiança! <span className="text-[#00c6e8] font-bold">CONEX DIGITAL</span> - Conectando você ao futuro digital
+                </p>
               </div>
-            ))}
-          </div>
-          
-          <div className="text-center pt-8 border-t border-gray-200">
-            <p className="text-conex-azul-light font-bold text-lg mb-1">Obrigado pela confiança!</p>
-            <p className="text-conex-azul font-bold text-xl">CONEX DIGITAL - Conectando você ao futuro digital</p>
+            </div>
           </div>
         </div>
       </section>
