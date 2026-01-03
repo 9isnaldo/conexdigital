@@ -52,7 +52,7 @@ export default function OndeUsar({
 
   return (
     <section 
-      className="py-16 bg-conex-azul"
+      className="py-16 bg-conex-gradient"
     >
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4">

@@ -1,26 +1,26 @@
 'use client';
 
-import { Star, Clock, Headphones, Users } from "lucide-react";
+import { Gem, ClockPlus, Headset, BadgeCheck } from "lucide-react";
 
 const Empresa = () => {
   const features = [
     {
-      icon: Star,
+      icon: Gem,
       title: "Especialistas no Assunto",
       description: "Equipe técnica especializada e dedicada para te auxiliar em cada etapa do processo."
     },
     {
-      icon: Clock,
+      icon: ClockPlus,
       title: "Agilidade no Processo",
       description: "Emissão rápida e validade imediata. Não perca prazos importantes do seu negócio."
     },
     {
-      icon: Headphones,
+      icon: Headset,
       title: "Suporte Humanizado",
       description: "Atendimento personalizado por telefone, WhatsApp e e-mail para tirar todas as suas dúvidas."
     },
     {
-      icon: Users,
+      icon: BadgeCheck,
       title: "Experiência Comprovada",
       description: "Mais de 5.000 certificados emitidos e 10 anos de mercado com excelência no atendimento."
     }
