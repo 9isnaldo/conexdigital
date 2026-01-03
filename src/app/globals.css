@@ -1895,3 +1895,550 @@ body {
     height: 250px !important;
   }
 }
+
+
+/* CARDS DE PRICING - ESTILO ANIMADO */
+.parceria-pricing-card {
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(11, 38, 67, 0.2),
+    0 5px 15px 0 rgba(11, 38, 67, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 320px;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid #e5e7eb;
+}
+
+.parceria-pricing-card::before {
+  content: "";
+  position: absolute;
+  background: rgba(50, 85, 149, 0.03);
+  width: 170px;
+  height: 400px;
+  z-index: -1;
+  transform: rotate(42deg);
+  right: -56px;
+  top: -23px;
+  border-radius: 35px;
+  transition: 0.7s;
+}
+
+.parceria-pricing-card:hover {
+  background: linear-gradient(135deg, #0b2643 0%, #1a3a5c 50%, #0b2643 100%);
+  color: #fff;
+  transform: translateY(-8px) scale(1.02);
+  z-index: 9;
+  border-color: #0b2643;
+  box-shadow: 0 20px 40px rgba(0, 198, 232, 0.3);
+}
+
+.parceria-pricing-card:hover::before {
+  background: rgba(0, 198, 232, 0.15);
+}
+
+.parceria-pricing-card:hover .parceria-pricing-title,
+.parceria-pricing-card:hover .parceria-pricing-info p,
+.parceria-pricing-card:hover .parceria-commission,
+.parceria-pricing-card:hover .parceria-margin {
+  color: #fff;
+}
+
+/* Ícone melhorado */
+.parceria-pricing-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50px;
+  background: rgba(50, 85, 149, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid rgba(50, 85, 149, 0.1);
+  position: relative;
+}
+
+.parceria-pricing-icon::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #325595, #00c6e8);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.parceria-pricing-icon svg {
+  color: #325595;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.parceria-pricing-card:hover .parceria-pricing-icon {
+  background: white;
+  border-color: transparent;
+  transform: scale(1.08) rotate(-5deg);
+  box-shadow: 0 8px 20px rgba(0, 198, 232, 0.4);
+}
+
+.parceria-pricing-card:hover .parceria-pricing-icon::after {
+  opacity: 1;
+}
+
+.parceria-pricing-card:hover .parceria-pricing-icon svg {
+  color: #0b2643;
+  transform: scale(1.15);
+}
+
+/* Título */
+.parceria-pricing-title {
+  color: #0b2643;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+  transition: color 0.5s ease;
+}
+
+/* Valor */
+.parceria-pricing-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s ease;
+}
+
+.parceria-price {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: #325595;
+  letter-spacing: -0.02em;
+  transition: color 0.5s ease;
+}
+
+.parceria-period {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 500;
+  transition: color 0.5s ease;
+}
+
+.parceria-pricing-card:hover .parceria-price {
+  color: #00c6e8;
+}
+
+.parceria-pricing-card:hover .parceria-period {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Info */
+.parceria-pricing-info {
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+  transition: border-color 0.5s ease;
+}
+
+.parceria-pricing-card:hover .parceria-pricing-info {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.parceria-commission,
+.parceria-margin {
+  color: #4b5563;
+  font-size: 1.2rem;
+  transition: color 0.5s ease;
+}
+
+.parceria-margin-value {
+  color: #16a34a;
+  font-weight: bold;
+  font-size: 1.9rem;
+  transition: color 0.5s ease;
+}
+
+.parceria-pricing-card:hover .parceria-margin-value {
+  color: #4ade80;
+}
+
+/* Bubble de hover */
+.parceria-hover-bubble {
+  position: absolute;
+  background: rgba(0, 198, 232, 0.15);
+  width: 100rem;
+  height: 100rem;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  top: 16rem;
+  border-radius: 50%;
+  transform: rotate(-36deg);
+  left: -18rem;
+  transition: 0.7s;
+}
+
+.parceria-pricing-card:hover .parceria-hover-bubble {
+  top: 0rem;
+}
+
+/* Highlight especial */
+.parceria-pricing-card.highlight {
+  border-color: #00c6e8;
+}
+
+.parceria-pricing-card.highlight:hover {
+  border-color: #0b2643;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .parceria-pricing-card {
+    min-height: 280px;
+  }
+}
+
+
+
+
+/* CARD DE PROJEÇÃO - VERSÃO COMPACTA */
+.parceria-projection-compact {
+  padding: 2.5rem 2rem !important;
+}
+
+.parceria-projection-compact .duvidas-header {
+  margin-bottom: 1.5rem;
+}
+
+/* CONTEÚDO DA PROJEÇÃO - CENTRALIZADO */
+.parceria-projection-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.parceria-projection-item {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.225rem;
+  line-height: 1.6;
+}
+
+.parceria-highlight-text {
+  color: #00c6e8;
+  font-weight: 700;
+}
+
+.parceria-highlight-value {
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 1.125rem;
+}
+
+.parceria-projection-footer {
+  color: #4ade80;
+  font-weight: 700;
+  font-size: 1.35rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .parceria-projection-compact {
+    padding: 2rem 1.5rem !important;
+  }
+  
+  .parceria-projection-item {
+    font-size: 0.95rem;
+  }
+  
+  .parceria-highlight-value {
+    font-size: 1.05rem;
+  }
+}
+
+/* Stats */
+.parceria-stat-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.parceria-stat-card:hover {
+  border-color: #00c6e8;
+  transform: translateY(-4px);
+}
+
+/* Benefícios */
+.parceria-benefit-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.parceria-benefit-card:hover {
+  border-color: #00c6e8;
+  box-shadow: 0 8px 20px rgba(0, 198, 232, 0.1);
+}
+
+.parceria-benefit-icon-box {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #325595, #00c6e8);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Contingência */
+.parceria-contingency-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Steps */
+.parceria-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.parceria-step-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.parceria-step-item:hover {
+  border-color: #00c6e8;
+  background: white;
+}
+
+.parceria-step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #325595, #00c6e8);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .parceria-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARDS DE PRICING - ESTILO ANIMADO */
+.our_solution_category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.our_solution_category .solution_cards_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0 calc(50% - 0.5rem);
+}
+
+.solution_cards_box .solution_card {
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(11, 38, 67, 0.2),
+    0 5px 15px 0 rgba(11, 38, 67, 0.15);
+  border-radius: 15px;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 280px;
+  transition: 0.7s;
+  border: 2px solid transparent;
+}
+
+.solution_cards_box .solution_card:hover {
+  background: linear-gradient(135deg, #325595 0%, #0b2643 100%);
+  color: #fff;
+  transform: scale(1.05);
+  z-index: 9;
+  border-color: #00c6e8;
+  box-shadow: 0 10px 30px rgba(0, 198, 232, 0.3);
+}
+
+.solution_cards_box .solution_card:hover::before {
+  background: rgba(0, 198, 232, 0.1);
+}
+
+.solution_cards_box .solution_card:before {
+  content: "";
+  position: absolute;
+  background: rgba(50, 85, 149, 0.05);
+  width: 170px;
+  height: 400px;
+  z-index: -1;
+  transform: rotate(42deg);
+  right: -56px;
+  top: -23px;
+  border-radius: 35px;
+  transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover .solu_title div,
+.solution_cards_box .solution_card:hover .solu_description p,
+.solution_cards_box .solution_card:hover .solu_description .pricing_value,
+.solution_cards_box .solution_card:hover .commission_text,
+.solution_cards_box .solution_card:hover .margin_text {
+  color: #fff;
+}
+
+.solution_cards_box .solution_card .so_top_icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #325595, #00c6e8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover .so_top_icon {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.solution_cards_box .solution_card:hover .so_top_icon svg {
+  color: #325595 !important;
+}
+
+.solution_card .solu_title div {
+  color: #0b2643;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.solution_card .solu_description {
+  font-size: 15px;
+}
+
+.pricing_value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pricing_value .price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #325595;
+}
+
+.pricing_value .period {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.solution_cards_box .solution_card:hover .pricing_value .price,
+.solution_cards_box .solution_card:hover .pricing_value .period {
+  color: #00c6e8;
+}
+
+.pricing_details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.solution_cards_box .solution_card:hover .pricing_details {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.commission_text,
+.margin_text {
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.margin_value {
+  color: #16a34a;
+  font-size: 1.25rem;
+}
+
+.solution_cards_box .solution_card:hover .margin_value {
+  color: #4ade80;
+}
+
+.recommended_badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #00c6e8;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+
+.hover_color_bubble {
+  position: absolute;
+  background: rgba(0, 198, 232, 0.15);
+  width: 100rem;
+  height: 100rem;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  top: 16rem;
+  border-radius: 50%;
+  transform: rotate(-36deg);
+  left: -18rem;
+  transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover .hover_color_bubble {
+  top: 0rem;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .our_solution_category .solution_cards_box {
+    flex: 0 100%;
+  }
+}
