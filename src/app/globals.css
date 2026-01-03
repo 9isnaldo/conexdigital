@@ -2442,3 +2442,132 @@ body {
     flex: 0 100%;
   }
 }
+
+
+/* CARROSSEL 3D - MODELO ORIGINAL */
+@keyframes autoRun3d {
+  from {
+    transform: perspective(800px) rotateY(360deg);
+  }
+  to {
+    transform: perspective(800px) rotateY(0deg);
+  }
+}
+
+@keyframes animateBrightness {
+  10% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1);
+  }
+  90% {
+    filter: brightness(1);
+  }
+}
+
+.parceria-carousel-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parceria-card-3d {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform: perspective(800px);
+  animation: autoRun3d 50s linear infinite;
+  will-change: transform;
+}
+
+.parceria-card-3d .parceria-carousel-card {
+  position: absolute;
+  width: 200px;
+  height: 280px;
+  background-color: #ffffff;
+  border: solid 2px #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  top: 70%;
+  left: 50%;
+  transform-origin: center center;
+  animation: animateBrightness 20s linear infinite;
+  transition-duration: 200ms;
+  will-change: transform, filter;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(11, 38, 67, 0.1);
+}
+
+.parceria-card-3d:hover {
+  animation-play-state: paused !important;
+}
+
+.parceria-card-3d:hover .parceria-carousel-card {
+  animation-play-state: paused !important;
+}
+
+.parceria-carousel-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #325595, #00c6e8);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.parceria-carousel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0b2643;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.parceria-carousel-text {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* 6 cards com espaçamento de 60 graus (360/6) */
+.parceria-card-3d .parceria-carousel-card:nth-child(1) {
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(250px);
+  animation-delay: -0s;
+}
+
+.parceria-card-3d .parceria-carousel-card:nth-child(2) {
+  transform: translate(-50%, -50%) rotateY(60deg) translateZ(250px);
+  animation-delay: -3.33s;
+}
+
+.parceria-card-3d .parceria-carousel-card:nth-child(3) {
+  transform: translate(-50%, -50%) rotateY(120deg) translateZ(250px);
+  animation-delay: -6.66s;
+}
+
+.parceria-card-3d .parceria-carousel-card:nth-child(4) {
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(250px);
+  animation-delay: -10s;
+}
+
+.parceria-card-3d .parceria-carousel-card:nth-child(5) {
+  transform: translate(-50%, -50%) rotateY(240deg) translateZ(250px);
+  animation-delay: -13.33s;
+}
+
+.parceria-card-3d .parceria-carousel-card:nth-child(6) {
+  transform: translate(-50%, -50%) rotateY(300deg) translateZ(250px);
+  animation-delay: -16.66s;
+}

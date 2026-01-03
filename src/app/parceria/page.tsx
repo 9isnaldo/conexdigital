@@ -170,32 +170,35 @@ const Parceria = () => {
       </section>
 
       {/* Seção Sobre */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-conex-azul mb-4">Por que a CONEX DIGITAL?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empresa especializada em certificação digital, com foco na excelência do atendimento 
-              e satisfação do cliente através de uma rede sólida de parceiros.
-            </p>
-          </div>
-                    
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => {
-              const IconComponent = benefit.icon;
-              return (
-                <div key={index} className="parceria-benefit-card">
-                  <div className="parceria-benefit-icon-box">
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-lg font-bold text-conex-azul mb-2">{benefit.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{benefit.text}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+<section className="py-20 px-6 bg-gray-50 mb-12">
+  <div className="container mx-auto max-w-6xl">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-conex-azul mb-4">Por que escolher a CONEX DIGITAL?</h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        Empresa especializada em certificação digital, com foco na excelência do atendimento 
+        e satisfação do cliente através de uma rede sólida de parceiros.
+      </p>
+    </div>
+    
+    <div className="parceria-carousel-container">
+      <div className="parceria-card-3d">
+        {benefits.map((benefit, index) => {
+          const IconComponent = benefit.icon;
+          return (
+            <div key={index} className="parceria-carousel-card">
+              <div className="parceria-carousel-icon">
+                <IconComponent className="w-7 h-7" />
+              </div>
+              <h4 className="parceria-carousel-title">{benefit.title}</h4>
+              <p className="parceria-carousel-text">{benefit.text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    
+  </div>
+</section>
 
       {/* CTA Final */}
       <section className="py-20 px-6 bg-white">

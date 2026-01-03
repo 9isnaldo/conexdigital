@@ -66,7 +66,7 @@ export default function Header() {
         setHoverColorClass('hover:text-conex-azul-light');
       } else {
         setTextColorClass('text-conex-azul');
-        setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO: sempre azul-light no hover
+        setHoverColorClass('hover:text-conex-azul-light');
       }
     };
 
@@ -125,7 +125,7 @@ export default function Header() {
             
             if (!elementBelow) {
               setTextColorClass('text-conex-azul');
-              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+              setHoverColorClass('hover:text-conex-azul-light');
               return;
             }
 
@@ -133,7 +133,7 @@ export default function Header() {
             
             if (!sectionElement) {
               setTextColorClass('text-conex-azul');
-              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+              setHoverColorClass('hover:text-conex-azul-light');
               return;
             }
 
@@ -159,7 +159,7 @@ export default function Header() {
               setHoverColorClass('hover:text-conex-azul-light');
             } else {
               setTextColorClass('text-conex-azul');
-              setHoverColorClass('hover:text-conex-azul-light'); // CORREÇÃO
+              setHoverColorClass('hover:text-conex-azul-light');
             }
           };
           
@@ -178,14 +178,12 @@ export default function Header() {
     <header ref={headerRef} className="fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-300">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" onClick={handleLinkClick}>
             <div className="flex items-center justify-center mt-4">
               <img src={logo.src} alt="Conex Digital" className="h-10 md:h-12" />
             </div>
           </Link>
 
-          {/* Menu de Navegação para Desktop - Centralizado */}
           <nav className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-4 lg:space-x-8 px-4 lg:px-6 py-5 mt-6 glass text-lg font-semibold ${textColorClass}`}>
             <Link href="/" className={`transition-colors duration-300 ${hoverColorClass}`}>
               Inicio
